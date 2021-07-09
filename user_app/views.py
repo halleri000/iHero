@@ -43,7 +43,7 @@ def coach_details(request, user_id: int):
     coach = HeroUser.objects.get(id=user_id)
     assigned_tasks = Task.objects.filter(assigned_to=coach)
     context = {
-        'coaches': coach,
+        'coach': coach,
         'assigned_tasks': assigned_tasks,
     }
     return render(request, 'coach_details.html', context)
