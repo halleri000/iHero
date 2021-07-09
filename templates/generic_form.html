@@ -1,0 +1,6 @@
+{% include 'base.html' %}
+<form method="post" action="">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
