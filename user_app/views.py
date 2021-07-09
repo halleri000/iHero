@@ -40,11 +40,10 @@ def indexView(request):
 
 
 def coach_details(request, user_id: int):
-    if HeroUser.objects.filter(is_coach=True):
-        coach = HeroUser.objects.get(id=user_id)
-        assigned_tasks = Task.objects.filter(assigned_to=coach)
-        context = {
-            'coaches': coach,
-            'assigned_tasks': assigned_tasks,
-        }
-        return render(request, 'coach_details.html', context)
+    coach = HeroUser.objects.get(id=user_id)
+    assigned_tasks = Task.objects.filter(assigned_to=coach)
+    context = {
+        'coaches': coach,
+        'assigned_tasks': assigned_tasks,
+    }
+    return render(request, 'coach_details.html', context)
