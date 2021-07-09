@@ -30,3 +30,9 @@ class CreateHeroForm(forms.Form):
   bio = forms.CharField(widget= Textarea)
   age = forms.IntegerField()
   user_type = forms.CharField(widget=forms.Select(choices=COACH_CHOICES))
+
+
+
+class LoginHeroForm(forms.Form):
+  username = forms.CharField(max_length=150)
+  password = forms.CharField(widget = PasswordInput)
