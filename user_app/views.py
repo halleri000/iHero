@@ -1,11 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from .forms import CreateHeroForm, LoginHeroForm
 from .models import HeroUser
+from tasks.models import Task
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-
-
-
 
 
 def loginUser(request):
@@ -68,3 +66,39 @@ def loginUser(request):
         return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
   form = LoginHeroForm()
   return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
+
+
+def learner_details(request, user_id: int):
+    learner = HeroUser.objects.get(id=user_id)
+    assigned_tasks = Task.objects.filter(assigned_to=learner)
+    context = {
+        'learner': learner,
+        'assigned_tasks': assigned_tasks,
+    }
+    return render(request, 'learner_details.html', context)
+
+
+def heroes(request):
+    heroes = HeroUser.objects.all()
+    context = {
+        'heroes': heroes
+    }
+    return render(request, 'heroes.html', context)
+
+
+def indexView(request):
+    welcome = 'Welcome to iHero!'
+    context = {
+        'welcome': welcome,
+    }
+    return render(request, 'index.html', context)
+
+
+def coach_details(request, user_id: int):
+    coach = HeroUser.objects.get(id=user_id)
+    assigned_tasks = Task.objects.filter(assigned_to=coach)
+    context = {
+        'coach': coach,
+        'assigned_tasks': assigned_tasks,
+    }
+    return render(request, 'coach_details.html', context)
