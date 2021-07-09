@@ -79,11 +79,13 @@ def learner_details(request, user_id: int):
 
 
 def heroes(request):
-    heroes = HeroUser.objects.all()
+    coaches = HeroUser.objects.filter(is_coach=True)
+    learners = HeroUser.objects.filter(is_coach=False)
     context = {
-        'heroes': heroes
+        'coaches': coaches,
+        'learners': learners
     }
-    return render(request, 'heroes.html', context)
+    return render(request, 'welcome.html', context)
 
 
 def indexView(request):
@@ -91,7 +93,7 @@ def indexView(request):
     context = {
         'welcome': welcome,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
 
 def coach_details(request, user_id: int):
@@ -102,3 +104,11 @@ def coach_details(request, user_id: int):
         'assigned_tasks': assigned_tasks,
     }
     return render(request, 'coach_details.html', context)
+
+def coachList(request):
+  coaches = HeroUser.objects.filter(is_coach=True)
+  return render(request, 'coaches.html', {'coaches': coaches})
+
+def learnerList(request):
+  learners = HeroUser.objects.filter(is_coach=False)
+  return render(request, 'learners.html', {'learners': learners})

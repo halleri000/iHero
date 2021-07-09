@@ -1,0 +1,9 @@
+{%  extends 'base.html'  %}
+
+{%  block content  %}
+  <p>{{  learner  }}</p>
+
+  {%  for task in assigned_tasks  %}
+    <p><a href="/task/{{  task.id  }}/">{{  task  }}</a></p> 
+  {%  endfor  %}
+{%  endblock  %}
