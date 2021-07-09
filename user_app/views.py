@@ -3,11 +3,6 @@ from .forms import CreateHeroForm
 from .models import HeroUser
 from tasks.models import Task
 
-
-
-
-
-
 # more to do here, just created the view to match the form/model, error catching needs to be worked on as well
 def createUser(request):
   if request.method == 'POST':
@@ -52,3 +47,22 @@ def heroes(request):
         'heroes': heroes
     }
     return render(request, 'heroes.html', context)
+
+
+def indexView(request):
+    welcome = 'Welcome to iHero!'
+    context = {
+        'welcome': welcome,
+    }
+    return render(request, 'index.html', context)
+
+
+def coach_details(request, user_id: int):
+    coach = HeroUser.objects.get(id=user_id)
+    assigned_tasks = Task.objects.filter(assigned_to=coach)
+    context = {
+        'coach': coach,
+        'assigned_tasks': assigned_tasks,
+    }
+    return render(request, 'coach_details.html', context)
+
