@@ -1,0 +1,17 @@
+{%  extends 'base.html'  %}
+
+
+{%  block content  %}
+
+
+  <p>Task: {{  task  }}</p>
+  <p>Assigned To: {{  task.assigned_to  }}</p>
+  <p>Completed Status: {{  task.completed  }}</p>
+  <p>Date Submitted: {{  task.submitted_on  }}</p>
+  <a href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
+  <a href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
+
+
+
+
+{%  endblock  %}

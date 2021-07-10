@@ -53,20 +53,6 @@ def createUser(request):
   form = CreateHeroForm()
   return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
 
-def loginUser(request):
-  if request.method == "POST":
-    form = LoginHeroForm(request.POST)
-    if form.is_valid():
-      data = form.cleaned_data
-      if HeroUser.objects.filter(username=data['username']).exists():
-        user = authenticate(username=data['username'], password=data['password'])
-        login(request, user)
-        return HttpResponseRedirect(request.GET.get('next', reverse('home')))
-      else:
-        return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
-  form = LoginHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
-
 
 def learner_details(request, user_id: int):
     learner = HeroUser.objects.get(id=user_id)
@@ -79,11 +65,13 @@ def learner_details(request, user_id: int):
 
 
 def heroes(request):
-    heroes = HeroUser.objects.all()
+    coaches = HeroUser.objects.filter(is_coach=True)
+    learners = HeroUser.objects.filter(is_coach=False)
     context = {
-        'heroes': heroes
+        'coaches': coaches,
+        'learners': learners
     }
-    return render(request, 'heroes.html', context)
+    return render(request, 'welcome.html', context)
 
 
 def indexView(request):
@@ -91,7 +79,7 @@ def indexView(request):
     context = {
         'welcome': welcome,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
 
 def coach_details(request, user_id: int):
@@ -102,3 +90,11 @@ def coach_details(request, user_id: int):
         'assigned_tasks': assigned_tasks,
     }
     return render(request, 'coach_details.html', context)
+
+def coachList(request):
+  coaches = HeroUser.objects.filter(is_coach=True)
+  return render(request, 'coaches.html', {'coaches': coaches})
+
+def learnerList(request):
+  learners = HeroUser.objects.filter(is_coach=False)
+  return render(request, 'learners.html', {'learners': learners})
