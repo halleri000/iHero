@@ -53,20 +53,6 @@ def createUser(request):
   form = CreateHeroForm()
   return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
 
-def loginUser(request):
-  if request.method == "POST":
-    form = LoginHeroForm(request.POST)
-    if form.is_valid():
-      data = form.cleaned_data
-      if HeroUser.objects.filter(username=data['username']).exists():
-        user = authenticate(username=data['username'], password=data['password'])
-        login(request, user)
-        return HttpResponseRedirect(request.GET.get('next', reverse('home')))
-      else:
-        return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
-  form = LoginHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
-
 
 def learner_details(request, user_id: int):
     learner = HeroUser.objects.get(id=user_id)
