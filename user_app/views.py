@@ -17,9 +17,9 @@ def loginUser(request):
         login(request, user)
         return HttpResponseRedirect(request.GET.get('next', reverse('?????')))
       else:
-        return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
+        return render(request, 'generic_form.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
   form = LoginHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
+  return render(request, 'generic_form.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
 
 
 def createUser(request):
@@ -102,6 +102,12 @@ def coachList(request):
   coaches = HeroUser.objects.filter(is_coach=True)
   return render(request, 'coaches.html', {'coaches': coaches})
 
+
 def learnerList(request):
   learners = HeroUser.objects.filter(is_coach=False)
   return render(request, 'learners.html', {'learners': learners})
+
+
+def logoutUser(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("home"))

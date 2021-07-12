@@ -31,4 +31,6 @@ urlpatterns = [
     path('coaches/', u_views.coachList),
     path('learners/', u_views.learnerList),
     path('signup/', u_views.createUser),
+    path('login/', u_views.loginUser),
+    path('logout/', u_views.logoutUser),
 ]
