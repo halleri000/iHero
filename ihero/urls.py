@@ -18,10 +18,10 @@ from django.urls import path
 from user_app import views as u_views
 from tasks import views as t_views
 urlpatterns = [
-    path('learner/<int:user_id>/', u_views.learner_details, name='learner'),
-    path('welcome/', u_views.heroes, name='heroes'),
+    path('learner/<int:user_id>/', u_views.LearnerDetailsView.as_view(), name='learner'),
+    path('welcome/', u_views.HeroesView.as_view(), name='heroes'),
     path('', u_views.indexView, name='home'),
-    path('coach/<int:user_id>/', u_views.coach_details, name='coach'),
+    path('coach/<int:user_id>/', u_views.CoachDetailsView.as_view(), name='coach'),
     path('admin/', admin.site.urls),
     path('addtask/', t_views.newTaskByLearner),
     path('addtotasks/', t_views.newTaskByCoach),
@@ -30,4 +30,7 @@ urlpatterns = [
     path('markincomplete/<int:task_id>/', t_views.markTaskIncomplete),
     path('coaches/', u_views.coachList),
     path('learners/', u_views.learnerList),
+    path('signup/', u_views.createUser),
+    path('login/', u_views.loginUser),
+    path('logout/', u_views.logoutUser),
 ]

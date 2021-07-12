@@ -4,6 +4,7 @@ from .models import HeroUser
 from tasks.models import Task
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.views.generic import View
 
 
 def loginUser(request):
@@ -16,9 +17,9 @@ def loginUser(request):
         login(request, user)
         return HttpResponseRedirect(request.GET.get('next', reverse('?????')))
       else:
-        return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
+        return render(request, 'generic_form.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
   form = LoginHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
+  return render(request, 'generic_form.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
 
 
 def createUser(request):
@@ -47,32 +48,35 @@ def createUser(request):
           login(request, user)
           return HttpResponseRedirect(reverse('home'))
         else:
-          return render(request, 'genericform.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
+          return render(request, 'generic_form.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
       else:
-        return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': 'Username is unavailable, please choose another.'})
+        return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': 'Username is unavailable, please choose another.'})
   form = CreateHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
+  return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
 
 
-def learner_details(request, user_id: int):
-    learner = HeroUser.objects.get(id=user_id)
-    assigned_tasks = Task.objects.filter(assigned_to=learner)
-    context = {
-        'learner': learner,
-        'assigned_tasks': assigned_tasks,
-    }
-    return render(request, 'learner_details.html', context)
+class LearnerDetailsView(View):
+
+    def get(self, request, user_id):
+        learner = HeroUser.objects.get(id=user_id)
+        assigned_tasks = Task.objects.filter(assigned_to=learner)
+        context = {
+            'learner': learner,
+            'assigned_tasks': assigned_tasks,
+        }
+        return render(request, 'learner_details.html', context)
 
 
-def heroes(request):
-    coaches = HeroUser.objects.filter(is_coach=True)
-    learners = HeroUser.objects.filter(is_coach=False)
-    context = {
-        'coaches': coaches,
-        'learners': learners
-    }
-    return render(request, 'welcome.html', context)
+class HeroesView(View):
 
+    def get(self, request):
+        coaches = HeroUser.objects.filter(is_coach=True)
+        learners = HeroUser.objects.filter(is_coach=False)
+        context = {
+            'coaches': coaches,
+            'learners': learners
+        }
+        return render(request, 'welcome.html', context)
 
 def indexView(request):
     welcome = 'Welcome to iHero!'
@@ -82,19 +86,28 @@ def indexView(request):
     return render(request, 'home.html', context)
 
 
-def coach_details(request, user_id: int):
-    coach = HeroUser.objects.get(id=user_id)
-    assigned_tasks = Task.objects.filter(assigned_to=coach)
-    context = {
-        'coach': coach,
-        'assigned_tasks': assigned_tasks,
-    }
-    return render(request, 'coach_details.html', context)
+class CoachDetailsView(View):
+
+    def get(self, request, user_id):
+        coach = HeroUser.objects.get(id=user_id)
+        assigned_tasks = Task.objects.filter(assigned_to=coach)
+        context = {
+            'coach': coach,
+            'assigned_tasks': assigned_tasks,
+        }
+        return render(request, 'coach_details.html', context)
+
 
 def coachList(request):
   coaches = HeroUser.objects.filter(is_coach=True)
   return render(request, 'coaches.html', {'coaches': coaches})
 
+
 def learnerList(request):
   learners = HeroUser.objects.filter(is_coach=False)
   return render(request, 'learners.html', {'learners': learners})
+
+
+def logoutUser(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("home"))
