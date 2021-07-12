@@ -30,4 +30,5 @@ urlpatterns = [
     path('markincomplete/<int:task_id>/', t_views.markTaskIncomplete),
     path('coaches/', u_views.coachList),
     path('learners/', u_views.learnerList),
+    path('signup/', u_views.createUser),
 ]

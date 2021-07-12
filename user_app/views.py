@@ -47,11 +47,11 @@ def createUser(request):
           login(request, user)
           return HttpResponseRedirect(reverse('home'))
         else:
-          return render(request, 'genericform.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
+          return render(request, 'generic_form.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
       else:
-        return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': 'Username is unavailable, please choose another.'})
+        return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': 'Username is unavailable, please choose another.'})
   form = CreateHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
+  return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
 
 
 def learner_details(request, user_id: int):
