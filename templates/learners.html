@@ -1,7 +1,29 @@
 {%  extends 'base.html'  %}
 
 {%  block content  %}
-  {%  for learner in learners  %}
-    <p>{{  learner  }}</p>
-  {%  endfor  %}
+<div class="container">
+  <h1 class="text-center my-3"> Learners </h1>
+  <div class="row">
+
+    {%  for learner in learners  %}
+    <!-- <p>{{  learner  }}</p> -->
+    <div class="col-4 my-3">
+
+      <div class="card">
+        <div class="card-body">
+          <p>Name: {{  learner.first_name  }} {{  learner.last_name  }}</p>
+          <p>Username: <a href="/learner/{{  learner.id  }}/">{{  learner.username  }}</a></p>
+          <p>Email: {{  learner.email  }}</p>
+          <p>Website: {{  learner.website  }}</p>
+          <p>Age: {{  learner.age  }}</p>
+          <p>Specialty Code: {{  learner.interests  }}</p>
+          <!-- To do: research how to translate the code in db into the value -->
+          <p>Is Coach?:  {{  learner.is_coach  }}</p>
+          <br>
+        </div>
+      </div>
+      </div>
+      {%  endfor  %}
+  </div>
+</div>
 {%  endblock  %}

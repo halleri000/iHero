@@ -1,8 +1,28 @@
 {%  extends 'base.html'  %}
 
-{%  block content  %}
-  {%  for coach in coaches  %}
-    <p>{{  coach  }}</p>
-  {%  endfor  %}
 
+{%  block content  %}
+<div class="container">
+  <h3 class="text-center">Coaches</h3>
+  <div class="row">
+    {%  for coach in coaches  %}
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+      <p>{{  coach  }}</p>
+      <p>Name: {{  coach.first_name  }} {{  coach.last_name  }}</p>
+      <p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
+      <p>Email: {{  coach.email  }}</p>
+      <p>Website: <a href="{{  coach.website  }}">{{  coach.website  }}</a></p>
+      <p>Age: {{  coach.age  }}</p>
+      <p>Specialty Code: {{  coach.interests  }}</p>
+      <!-- To do: research how to translate the code in db into the value -->
+      <p>Is Coach?:  {{  coach.is_coach  }}</p>
+      <br>
+      </div>
+      </div>
+      </div>
+    {%  endfor  %}
+  </div>
+</div>
 {%  endblock  %}
