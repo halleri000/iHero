@@ -1,9 +1,11 @@
 {%  extends 'base.html'  %}
 
 {%  block content  %}
+<div class='content'></div>
   <p>{{  learner  }}</p>
 
   {%  for task in assigned_tasks  %}
     <p><a href="/task/{{  task.id  }}/">{{  task  }}</a></p> 
   {%  endfor  %}
+</div>
 {%  endblock  %}

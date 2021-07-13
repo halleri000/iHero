@@ -3,37 +3,40 @@
 <br>
 {%  block content  %}
 <body>
-<div id='welcome' class='content'>
-  <h1> Welcome to the internet </h1>
-  <h3> Much is planned </h3>
-  <h3>This will be displayed when a user IS logged in</h3>
+<div id='welcome' class='content flex-container'>
   
-  
+  <div id='coaches' class='heroes'>
   <h3>Coaches</h3>
   {%  for coach in coaches  %}
+  <div>
     <p>Name: {{  coach.first_name  }} {{  coach.last_name  }}</p>
-    <p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
+    <!--<p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
     <p>Email: {{  coach.email  }}</p>
     <p>Website: {{  coach.website  }}</p>
-    <p>Age: {{  coach.age  }}</p>
+    <p>Age: {{  coach.age  }}</p>-->
     <p>Specialty Code: {{  coach.interests  }}</p>
-    <!-- To do: research how to translate the code in db into the value -->
-    <p>Is Coach?:  {{  coach.is_coach  }}</p>
+    <!-- To do: research how to translate the code in db into the value 
+    <p>Is Coach?:  {{  coach.is_coach  }}</p>-->
+  </div>
+  
     <br>
   {%  endfor%}
-
-  <h3>Learners</h3>
+</div>
+  <div id='learners' class='heroes'>
+    <h3>Learners</h3>
   {%  for learner in learners  %}
     <p>Name: {{  learner.first_name  }} {{  learner.last_name  }}</p>
-    <p>Username: <a href="/learner/{{  learner.id  }}/">{{  learner.username  }}</a></p>
+    <!--<p>Username: <a href="/learner/{{  learner.id  }}/">{{  learner.username  }}</a></p>
     <p>Email: {{  learner.email  }}</p>
     <p>Website: {{  learner.website  }}</p>
-    <p>Age: {{  learner.age  }}</p>
+    <p>Age: {{  learner.age  }}</p>-->
     <p>Specialty Code: {{  learner.interests  }}</p>
-    <!-- To do: research how to translate the code in db into the value -->
-    <p>Is Coach?:  {{  learner.is_coach  }}</p>
+    <!-- To do: research how to translate the code in db into the value 
+    <p>Is Coach?:  {{  learner.is_coach  }}</p>-->
     <br>
   {%  endfor  %}
+</div>
+
 </div>
 </body>
 {%  endblock  %}

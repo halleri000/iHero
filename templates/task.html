@@ -2,7 +2,7 @@
 
 
 {%  block content  %}
-
+<div class='content'></div>
 
   <p>Task: {{  task  }}</p>
   <p>Assigned To: {{  task.assigned_to  }}</p>
@@ -11,7 +11,7 @@
   <a href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
   <a href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
 
-
+</div>
 
 
 {%  endblock  %}
