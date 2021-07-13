@@ -1,5 +1,5 @@
 """ihero URL Configuration
-
+ 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -13,14 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-from django.conf.urls import handler404
 from django.contrib import admin
 from django.urls import path
 from user_app import views as u_views
 from tasks import views as t_views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from notifications import views as n_views
-
 urlpatterns = [
     path('learner/<int:user_id>/', u_views.LearnerDetailsView.as_view(), name='learner'),
     path('welcome/', u_views.HeroesView.as_view(), name='heroes'),
@@ -37,12 +35,9 @@ urlpatterns = [
     path('signup/', u_views.createUser),
     path('login/', u_views.loginUser),
     path('logout/', u_views.logoutUser),
-    path('notifications/', n_views.notification_view),
-    path('messages/', n_views.messages_home, name='messages'),
-    path('message/<int:message_id>/', n_views.message_details),
-    path('add_message/', n_views.add_message),
 ]
-
+ 
 
 handler404 = "user_app.views.handle404error"
-handler500 = "user_app.views.handle500error"
+handler500 = "user_app.views.handle500error" 
+urlpatterns += staticfiles_urlpatterns()
