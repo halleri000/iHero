@@ -1,9 +1,11 @@
 {%  extends 'base.html'  %}
 
 {%  block content  %}
+
   <p>{{  coach  }}</p>
 
   {%  for task in assigned_tasks  %}
     <a href="/task/{{  task.id  }}/">{{  task  }}</a>
   {%  endfor  %}
+
 {%  endblock  %}

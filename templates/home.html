@@ -1,16 +1,12 @@
 {%  extends 'base.html'  %}
+{%load static %}
+{%block content%}
 
-{%  block content  %}
-<a href='/login/'> Login </a> &ensp;
-<a href='/signup/'> Sign-Up </a>
-
-<div>
+<div id='home' class='content'>
   <h2> iHero </h2>
+  <img src='{% static "media/image.jpg" %}' alt='random image of joker' height=100px width=100px>
+
   <p>This will be the generic home page that is displayed when a User is NOT logged in</p>
-  <p> {{  welcome  }}</p>
+  <p> {{ welcome }}</p>
 </div>
-
-{%  endblock  %}
-
-
-
+{%endblock%}

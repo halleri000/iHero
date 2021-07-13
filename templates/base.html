@@ -1,21 +1,57 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+
+  <style>
+
+  </style>
   <title>iHero</title>
 </head>
+
 <body>
-  <a href="/">Home</a> &ensp;
-  <a href='/welcome/'> Welcome </a> &ensp;
-  <a href='/coaches/'>Coaches</a> &ensp;
-  <a href='/learners/'> Learners </a> &ensp;
-  <a href='/logout/'>Logout </a> &ensp;
-
-
-  {%  block content %}{%  endblock  %}
+  <nav class="nav navbar navbar-expand-sm navbar-inverse navbar-dark bg-dark mb-4 fixed-top">
+    <div class="container-fluid">
+      {% if request.user.is_authenticated %}
+      <ul class="nav navbar-nav ">
+        <li class="nav-item">
+          <a class='nav-link' href='/welcome/'> Welcome </a>
+        </li>
+        {%if request.user.is_staff %}
+        <li class="nav-item active">
+          <a class='nav-link' href='/coaches/'>Coaches</a>
+        </li>
+        {%else%}
+        <li class="nav-item">
+          <a class='nav-link' href='/learners/'> Learners </a>
+        </li>
+        {%endif%}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class='nav-link' href='/logout/'>Logout </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class='nav-link' href='/login/'> Login </a>
+        </li>
+        <li class="nav-item">
+          <a class='nav-link' href='/signup/'> Sign-Up </a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </nav>
+  
+  {% block content %}
+  {% endblock %}
 </body>
+
 </html>
-
-

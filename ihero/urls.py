@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from user_app import views as u_views
 from tasks import views as t_views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('learner/<int:user_id>/', u_views.LearnerDetailsView.as_view(), name='learner'),
     path('welcome/', u_views.HeroesView.as_view(), name='heroes'),
@@ -34,3 +35,6 @@ urlpatterns = [
     path('login/', u_views.loginUser),
     path('logout/', u_views.logoutUser),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()

@@ -1,0 +1,17 @@
+body{
+	background-color: white;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+.jumbotron{
+	color:black;
+}
+
+.navbar{
+	background-color:aqua;
+	color:white
+}
+
+.content{
+	margin-top:100px;
+}

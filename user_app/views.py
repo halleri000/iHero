@@ -15,7 +15,7 @@ def loginUser(request):
       if HeroUser.objects.filter(username=data['username']).exists():
         user = authenticate(username=data['username'], password=data['password'])
         login(request, user)
-        return HttpResponseRedirect(request.GET.get('next', reverse('?????')))
+        return HttpResponseRedirect(request.GET.get('next', reverse('heroes')))
       else:
         return render(request, 'generic_form.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
   form = LoginHeroForm()

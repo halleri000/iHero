@@ -1,7 +1,9 @@
 {%  extends 'base.html'  %}
 
-
+<br>
 {%  block content  %}
+<body>
+<div id='welcome' class='content'>
   <h1> Welcome to the internet </h1>
   <h3> Much is planned </h3>
   <h3>This will be displayed when a user IS logged in</h3>
@@ -32,4 +34,6 @@
     <p>Is Coach?:  {{  learner.is_coach  }}</p>
     <br>
   {%  endfor  %}
+</div>
+</body>
 {%  endblock  %}
