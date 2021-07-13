@@ -47,7 +47,7 @@ def message_details(request, message_id: int):
 
 
 def notification_view(request):
-    notifications = 'Notifications go here'
+    notifications = 'Notifications coming soon'
     return render(
         request,
         'notifications.html',
