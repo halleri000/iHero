@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iHero</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .icon {
+        max-height: 10vh;
+        max-width: 15vw;
+    }
+    </style>
+    <title>iHero</title>
 </head>
 <body>
-  <a href='/welcome/'> Welcome </a> &ensp;
-  <a href='/coaches/'>Coaches</a> &ensp;
-  <a href='/learners/'> Learners </a> &ensp;
-  <a href='/logout/'>Logout </a>
+  <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #20c1e9;">
+    <div class="container">
+        <a href="#" class="navbar-brand">
+            <div class="d-flex align-items-center">
+              <h3>iHero Task Manager</h3>
+            </div>
+        </a>
+        <!-- <a href='/login/'> Login </a> &ensp;
+        <a href='/signup/'> Sign-Up </a> -->
+              <a href='/welcome/'> Welcome </a> &ensp;
+              <a href='/coaches/'>Coaches</a> &ensp;
+              <a href='/learners/'> Learners </a> &ensp;
+              <a href='/logout/'>Logout </a>
+          
+      </div>
+    </nav>
+  {%  block content %}
+  {%  endblock  %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js" integrity="sha512-a6ctI6w1kg3J4dSjknHj3aWLEbjitAXAjLDRUxo2wyYmDFRcz2RJuQr5M3Kt8O/TtUSp8n2rAyaXYy1sjoKmrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-  {%  block content %}{%  endblock  %}
 </body>
 </html>
 

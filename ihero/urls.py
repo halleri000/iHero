@@ -20,7 +20,7 @@ from tasks import views as t_views
 urlpatterns = [
     path('learner/<int:user_id>/', u_views.learner_details, name='learner'),
     path('welcome/', u_views.heroes, name='heroes'),
-    path('', u_views.indexView, name='home'),
+    # path('', u_views.indexView, name='home'),
     path('coach/<int:user_id>/', u_views.coach_details, name='coach'),
     path('admin/', admin.site.urls),
     path('addtask/', t_views.newTaskByLearner),
@@ -30,4 +30,8 @@ urlpatterns = [
     path('markincomplete/<int:task_id>/', t_views.markTaskIncomplete),
     path('coaches/', u_views.coachList),
     path('learners/', u_views.learnerList),
+    path('', u_views.loginUser, name="loginUser"),
+    path('logout/', u_views.logoutUser, name="logoutUser"),
+
+
 ]

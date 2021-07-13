@@ -1,15 +1,24 @@
-{%  extends 'base.html'  %}
+{%  extends 'base.html' %}
 
 {%  block content  %}
-<a href='/login/'> Login </a> &ensp;
-<a href='/signup/'> Sign-Up </a>
+<!-- <a href='/login/'> Login </a> &ensp;
+<a href='/signup/'> Sign-Up </a> -->
 
+{% if request.user.is_authenticated %}
+<p> {{  welcome  }}</p>
+{% else %}
 <div>
-  <h2> iHero </h2>
-  <p>This will be the generic home page that is displayed when a User is NOT logged in</p>
-  <p> {{  welcome  }}</p>
+  <p>(This will be the generic home page that is displayed when a User is NOT logged in)</p>
+  <section class="container-fluid h-100 row align-items-center">
+    <div class="col-12 col-md-6 col-lg-4 px-1">
+        <h1 class="display-4 text-center mb-2">Accountability in the palm of your hand</h1>
+      {% block form %}
+      {% endblock form %}
+      </div>
+  </section>
+  
 </div>
-
+{% endif %}
 {%  endblock  %}
 
 

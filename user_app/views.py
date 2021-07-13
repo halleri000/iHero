@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from .forms import CreateHeroForm, LoginHeroForm
 from .models import HeroUser
 from tasks.models import Task
@@ -14,11 +14,11 @@ def loginUser(request):
       if HeroUser.objects.filter(username=data['username']).exists():
         user = authenticate(username=data['username'], password=data['password'])
         login(request, user)
-        return HttpResponseRedirect(request.GET.get('next', reverse('?????')))
+        return HttpResponseRedirect(request.GET.get('next', reverse('heroes')))
       else:
-        return render(request, 'genericform.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
+        return render(request, 'generic_form.html', {'form': form, 'title': 'Login Page', 'message': 'If you already have an account, please verify that you are using correct login credentials. If you do not have an account, please create one'})
   form = LoginHeroForm()
-  return render(request, 'genericform.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
+  return render(request, 'generic_form.html', {'form': form, 'title': "Login Page", 'message': 'Please Login into your account'})
 
 
 def createUser(request):
@@ -98,3 +98,7 @@ def coachList(request):
 def learnerList(request):
   learners = HeroUser.objects.filter(is_coach=False)
   return render(request, 'learners.html', {'learners': learners})
+
+def logoutUser(request):
+    logout(request)
+    return redirect('/')

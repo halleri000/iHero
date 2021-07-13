@@ -2,8 +2,14 @@
 
 {%  block content  %}
   <p>{{  coach  }}</p>
+  <p>{{ coach.name }}</p>
 
-  {%  for task in assigned_tasks  %}
-    <a href="/task/{{  task.id  }}/">{{  task  }}</a>
-  {%  endfor  %}
-{%  endblock  %}
+  <ul>
+    {%  for task in assigned_tasks  %}
+    <li>
+
+      <a href="/task/{{  task.id  }}/">{{  task  }}</a>
+    </li>
+    {%  endfor  %}
+    {%  endblock  %}
+  </ul>
