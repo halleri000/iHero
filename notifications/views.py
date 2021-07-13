@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .forms import AddMessageForm
 from .models import Notification, Message
 from user_app.models import HeroUser
@@ -7,6 +8,7 @@ import re
 # Create your views here.
 
 
+@login_required
 def messages_home(request):
     messages = Message.objects.all().order_by('-time_date')
     return render(request, 'messages.html', {'messages': messages})
@@ -46,6 +48,7 @@ def message_details(request, message_id: int):
         )
 
 
+@login_required
 def notification_view(request):
     notifications = 'Notifications coming soon'
     return render(
