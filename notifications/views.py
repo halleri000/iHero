@@ -31,7 +31,7 @@ def add_message(request):
                     mention=new_message,
                     mentioned_user=user_mentioned
                 )
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('messages'))
 
     form = AddMessageForm()
     return render(request, 'generic_form.html', {'form': form})
