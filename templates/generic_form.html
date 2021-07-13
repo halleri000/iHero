@@ -4,10 +4,12 @@
 
 {%  block content  %}
 <div id='form' class='content'>
-<form method="post" action="">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Submit">
-</form>
+  <h2>{{  title  }}</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+  </form>
+  <p>{{  message  }}</p>
 </div>
 {%  endblock  %}

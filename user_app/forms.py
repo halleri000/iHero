@@ -29,7 +29,7 @@ class CreateHeroForm(forms.Form):
   website = forms.CharField(widget = URLInput)
   bio = forms.CharField(widget= Textarea)
   age = forms.IntegerField()
-  user_type = forms.CharField(widget=forms.Select(choices=COACH_CHOICES))
+  is_coach = forms.CharField(widget=forms.Select(choices=COACH_CHOICES))
 
 
 

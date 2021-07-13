@@ -5,6 +5,7 @@ from tasks.models import Task
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def loginUser(request):
@@ -12,6 +13,7 @@ def loginUser(request):
     form = LoginHeroForm(request.POST)
     if form.is_valid():
       data = form.cleaned_data
+      print('data: ', data)
       if HeroUser.objects.filter(username=data['username']).exists():
         user = authenticate(username=data['username'], password=data['password'])
         login(request, user)
@@ -46,7 +48,7 @@ def createUser(request):
             new_user.save()
           user = authenticate(username=data['username'], password=data['password1'])
           login(request, user)
-          return HttpResponseRedirect(reverse('home'))
+          return HttpResponseRedirect(reverse('heroes'))
         else:
           return render(request, 'generic_form.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
       else:
@@ -55,7 +57,7 @@ def createUser(request):
   return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': "Please fill out this form to create your new account"})
 
 
-class LearnerDetailsView(View):
+class LearnerDetailsView(LoginRequiredMixin, View):
 
     def get(self, request, user_id):
         learner = HeroUser.objects.get(id=user_id)
@@ -67,7 +69,8 @@ class LearnerDetailsView(View):
         return render(request, 'learner_details.html', context)
 
 
-class HeroesView(View):
+
+class HeroesView(LoginRequiredMixin, View):
 
     def get(self, request):
         coaches = HeroUser.objects.filter(is_coach=True)
@@ -86,7 +89,7 @@ def indexView(request):
     return render(request, 'home.html', context)
 
 
-class CoachDetailsView(View):
+class CoachDetailsView(LoginRequiredMixin, View):
 
     def get(self, request, user_id):
         coach = HeroUser.objects.get(id=user_id)
@@ -98,11 +101,13 @@ class CoachDetailsView(View):
         return render(request, 'coach_details.html', context)
 
 
+@login_required
 def coachList(request):
   coaches = HeroUser.objects.filter(is_coach=True)
   return render(request, 'coaches.html', {'coaches': coaches})
 
 
+@login_required
 def learnerList(request):
   learners = HeroUser.objects.filter(is_coach=False)
   return render(request, 'learners.html', {'learners': learners})
@@ -111,3 +116,10 @@ def learnerList(request):
 def logoutUser(request):
     logout(request)
     return HttpResponseRedirect(reverse("home"))
+
+
+def handle404error(request, exception):
+  return render(request, '404.html')
+
+def handle500error(request, template_name='500.html'):
+  return render(request, '500.html')
