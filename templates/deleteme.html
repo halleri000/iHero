@@ -27,9 +27,9 @@
   <div class='flex_parent'>
   {%  for task in tasks  %}
     {%  if task.completed ==  True %}
-    <div class="flex_false">T</div>
+    <div class="flex_true">T</div>
     {%  else  %}
-      <div class="flex_true">F</div>
+      <div class="flex_false">F</div>
     {%  endif  %}
   {%  endfor  %}</div>
 
