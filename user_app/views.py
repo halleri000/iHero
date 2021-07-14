@@ -77,9 +77,9 @@ class LearnerDetailsView(LoginRequiredMixin, View):
 class HeroesView(LoginRequiredMixin, View):
 
     def get(self, request):
-        tasks = Task.objects.all().order_by('completed')
-        coaches = HeroUser.objects.filter(is_coach=True)
-        learners = HeroUser.objects.filter(is_coach=False)
+        tasks = Task.objects.all().order_by('-completed')
+        coaches = HeroUser.objects.filter(is_coach=True).order_by('interests')
+        learners = HeroUser.objects.filter(is_coach=False).order_by('interests')
         context = {
             'coaches': coaches,
             'learners': learners,
@@ -109,13 +109,13 @@ class CoachDetailsView(LoginRequiredMixin, View):
 
 @login_required
 def coachList(request):
-  coaches = HeroUser.objects.filter(is_coach=True)
+  coaches = HeroUser.objects.filter(is_coach=True).order_by('interests')
   return render(request, 'coaches.html', {'coaches': coaches})
 
 
 @login_required
 def learnerList(request):
-  learners = HeroUser.objects.filter(is_coach=False)
+  learners = HeroUser.objects.filter(is_coach=False).order_by('interests')
   return render(request, 'learners.html', {'learners': learners})
 
 
@@ -129,3 +129,10 @@ def handle404error(request, exception):
 
 def handle500error(request, template_name='500.html'):
   return render(request, '500.html')
+
+
+def deleteme(request):
+  tasks = Task.objects.all().order_by('-completed')
+  coaches = HeroUser.objects.filter(is_coach=True).order_by('interests')
+  learners = HeroUser.objects.filter(is_coach=False).order_by('interests')
+  return render(request, 'deleteme.html', {'tasks': tasks, 'coaches': coaches, 'learners': learners})
