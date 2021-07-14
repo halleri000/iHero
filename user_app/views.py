@@ -32,13 +32,13 @@ def createUser(request):
       if HeroUser.objects.filter(username=data['username']).exists()==False:
         invalid_username = re.findall('\W', data['username'])
         if not invalid_username:
-          if data['password1'] == data['password2']:
+          if data['password'] == data['confirm_password']:
             new_user = HeroUser.objects.create_user(
             username=data['username'],
             first_name=data['first_name'],
             last_name=data['last_name'],
             email=data['email'],
-            password=data['password1'],
+            password=data['password'],
             interests = data['interests'], 
             website = data['website'],
             bio = data['bio'],
@@ -48,7 +48,7 @@ def createUser(request):
             if data['is_coach'] == True:
               new_user.is_staff = True
               new_user.save()
-            user = authenticate(username=data['username'], password=data['password1'])
+            user = authenticate(username=data['username'], password=data['password'])
             login(request, user)
             return HttpResponseRedirect(reverse('heroes'))
           else:
@@ -65,7 +65,7 @@ class LearnerDetailsView(LoginRequiredMixin, View):
 
     def get(self, request, user_id):
         learner = HeroUser.objects.get(id=user_id)
-        assigned_tasks = Task.objects.filter(assigned_to=learner)
+        assigned_tasks = Task.objects.filter(assigned_to=learner).order_by('completed')
         context = {
             'learner': learner,
             'assigned_tasks': assigned_tasks,
@@ -77,11 +77,13 @@ class LearnerDetailsView(LoginRequiredMixin, View):
 class HeroesView(LoginRequiredMixin, View):
 
     def get(self, request):
+        tasks = Task.objects.all().order_by('completed')
         coaches = HeroUser.objects.filter(is_coach=True)
         learners = HeroUser.objects.filter(is_coach=False)
         context = {
             'coaches': coaches,
-            'learners': learners
+            'learners': learners,
+            'tasks': tasks
         }
         return render(request, 'welcome.html', context)
 
@@ -97,7 +99,7 @@ class CoachDetailsView(LoginRequiredMixin, View):
 
     def get(self, request, user_id):
         coach = HeroUser.objects.get(id=user_id)
-        assigned_tasks = Task.objects.filter(assigned_to=coach)
+        assigned_tasks = Task.objects.filter(assigned_to=coach).order_by('completed')
         context = {
             'coach': coach,
             'assigned_tasks': assigned_tasks,
