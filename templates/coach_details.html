@@ -2,8 +2,14 @@
 
 {%  block content  %}
 <div class='content'>
-  <p>{{  coach  }}</p>
-
+  <p>Name: <a href="/coach/{{coach.id}}/">{{  coach.first_name  }} {{  coach.last_name  }}</a></p>
+  <p>Username: {{  coach.username  }}</p>
+  <p>Email: {{  coach.email  }}</p>
+  <p>Website: {{  coach.website  }}</p>
+  <p>Age: {{  coach.age  }}</p>
+  <p>Specialty Code: {{  coach.interests  }}</p>
+  <!-- To do: research how to translate the code in db into the value 
+  <p>Is Coach?:  {{  coach.is_coach  }}</p>-->
   {%  for task in assigned_tasks  %}
     <a href="/task/{{  task.id  }}/">{{  task  }}</a>
   {%  endfor  %}

@@ -2,10 +2,19 @@
 
 {%  block content  %}
 <div class='content'>
-  <p>{{  learner  }}</p>
+  <p>Name: <a href="/learner/{{learner.id}}/">{{  learner.first_name  }} {{  learner.last_name  }}</a></p>
+  <p>Username: {{  learner.username  }}</p>
+  <p>Email: {{  learner.email  }}</p>
+  <p>Website: {{  learner.website  }}</p>
+  <p>Age: {{  learner.age  }}</p>
+  <p>Specialty Code: {{  learner.interests  }}</p>
 
+<h4> Tasks </h4>
   {%  for task in assigned_tasks  %}
     <p><a href="/task/{{  task.id  }}/">{{  task  }}</a></p> 
   {%  endfor  %}
+  {% if request.user.id == learner.id %}
+  <a href ='/addtask/'> Add Task </a>
+  {%endif%}
 </div>
 {%  endblock  %}
