@@ -2,12 +2,12 @@ from django import forms
 from django.forms.widgets import PasswordInput, Textarea, URLInput
 
 class CreateHeroForm(forms.Form):
-  SERVICEINDUSTRY= "SI"
-  TECH ='TK'
-  SALES = 'SL'
-  HEALTHCARE = 'HC'
-  FINANCE = 'FN'
-  EDUCATION = 'ED'
+  SERVICEINDUSTRY= "Service Industry"
+  TECH ='Technology'
+  SALES = 'Sales'
+  HEALTHCARE = 'Health Care'
+  FINANCE = 'Finance'
+  EDUCATION = 'Education'
   INTEREST_CHOICES = [
     (SERVICEINDUSTRY, 'Service Industry'),
     (TECH, 'Technology'),

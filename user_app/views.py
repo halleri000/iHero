@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+import re
 
 def loginUser(request):
   if request.method == "POST":
@@ -30,27 +30,31 @@ def createUser(request):
     if form.is_valid():
       data = form.cleaned_data
       if HeroUser.objects.filter(username=data['username']).exists()==False:
-        if data['password1'] == data['password2']:
-          new_user = HeroUser.objects.create_user(
-          username=data['username'],
-          first_name=data['first_name'],
-          last_name=data['last_name'],
-          email=data['email'],
-          password=data['password1'],
-          interests = data['interests'], 
-          website = data['website'],
-          bio = data['bio'],
-          age=data['age'],
-          is_coach = data['is_coach']
-          )
-          if data['is_coach'] == True:
-            new_user.is_staff = True
-            new_user.save()
-          user = authenticate(username=data['username'], password=data['password1'])
-          login(request, user)
-          return HttpResponseRedirect(reverse('heroes'))
+        invalid_username = re.findall('\W', data['username'])
+        if not invalid_username:
+          if data['password1'] == data['password2']:
+            new_user = HeroUser.objects.create_user(
+            username=data['username'],
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            email=data['email'],
+            password=data['password1'],
+            interests = data['interests'], 
+            website = data['website'],
+            bio = data['bio'],
+            age=data['age'],
+            is_coach = data['is_coach']
+            )
+            if data['is_coach'] == True:
+              new_user.is_staff = True
+              new_user.save()
+            user = authenticate(username=data['username'], password=data['password1'])
+            login(request, user)
+            return HttpResponseRedirect(reverse('heroes'))
+          else:
+            return render(request, 'generic_form.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
         else:
-          return render(request, 'generic_form.html', {'form': form, 'message': "Please make sure passwords match", 'title': "Create New Account"})
+          return render(request, 'generic_form.html', {'form': form, 'title': 'Create New Account', 'message': 'Username invalid, please only use letters, numbers or _. Spaces and special characters are not allowed'})
       else:
         return render(request, 'generic_form.html', {'form': form, 'title': "Create New Account", 'message': 'Username is unavailable, please choose another.'})
   form = CreateHeroForm()
