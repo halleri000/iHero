@@ -1,15 +1,21 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 
+{%load crispy_forms_tags %}
 
-
-{%  block content  %}
-<div id='form' class='content'>
-  <h2>{{  title  }}</h2>
-  <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-  </form>
-  <p>{{  message  }}</p>
+{% block content %}
+<div id='form' class='content container'>
+  <div class='row justify-content-center'>
+    <div class='col-8'>
+      <h2>{{ title }}</h2>
+      <hr class="mt-0 mb-4">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class='btn btn-success'>Submit</button>
+      </form>
+      <p>{{ message }}</p>
+    </div>
+  </div>
 </div>
-{%  endblock  %}
+
+{% endblock %}
