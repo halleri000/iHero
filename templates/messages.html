@@ -1,6 +1,19 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 {% block content %}
+<div class='container'>
 <p><strong>Hi {{ user.username }}!</strong>
 <p><a href="/add_message/">Click here to start a message</a>
+  {% for message in messages %}
 
+  <div id='message'>
+      <a href="/messages/{{  message.id  }}/">
+        By: {{ message.assigned_message }}</>
+        <br>
+        {{message.text}}
+        <br>
+        Posted 
+      </div>
+ 
+  {% endfor %}
+ </div>
   {% endblock %}

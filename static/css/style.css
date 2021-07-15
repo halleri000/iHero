@@ -3,10 +3,6 @@ body{
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
-.jumbotron{
-	color:black;
-}
-
 .navbar{
 	background-color:aqua;
 	color:white
@@ -31,4 +27,18 @@ body{
 	height: 200px;
 	text-align: center;
 	overflow: auto;
+}
+
+a {
+  text-decoration: none;
+	color:black;
+}
+
+#message > a {
+  text-decoration: none;
+}
+#message {
+	border: 1px solid black;
+	width: 25%;
+	margin: 10px;
 }

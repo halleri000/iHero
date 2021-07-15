@@ -35,6 +35,10 @@ urlpatterns = [
     path('signup/', u_views.createUser),
     path('login/', u_views.loginUser),
     path('logout/', u_views.logoutUser),
+    path('messages/', n_views.messages_home, name='messages'),
+    path('add_message/', n_views.add_message),
+    path('messages/<int:message_id>/', n_views.message_details),
+
 ]
  
 
