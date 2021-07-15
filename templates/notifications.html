@@ -2,6 +2,15 @@
 
 {% block content %}
 
-<h1>{{ notifications }}</h1>
+{% for notification in notifications %}
+<ul>
+  <li>
+    <p>{{ notification.mentioned_user. }}
+    <p>{{ notification.mention.text }}
+    <p>{{ notification.mention.time_date }}
+    <p>{{ notification.mention.assigned_user }}
+  </li>
+</ul>
+{% endfor %}
 
 {% endblock %}
