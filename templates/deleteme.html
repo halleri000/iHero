@@ -1,0 +1,60 @@
+{%  extends 'base.html'  %}
+
+
+{%  block content  %}
+<style>
+  .flex_parent{
+    display: flex;
+    width: 85%;
+    height: 30px;
+    background-color: aqua;
+
+  }
+  .flex_true{
+    display: inline;
+    background-color: green;
+    flex-grow: 1;
+  }
+  .flex_false{
+    display: inline;
+    background-color: red;
+    flex-grow: 1;
+  }
+</style>
+  <h1> PLEASE DELETE THIS PAGE ONCE THE POWER BAR IS IMPLEMENTED IN OTHER PAGES </h1>
+  
+  <h4>Fake power bar practice</h4>
+  <div class='flex_parent'>
+  {%  for task in tasks  %}
+    {%  if task.completed ==  True %}
+    <div class="flex_true">T</div>
+    {%  else  %}
+      <div class="flex_false">F</div>
+    {%  endif  %}
+  {%  endfor  %}</div>
+
+  <hr>
+
+
+
+  <h3>Coaches</h3>
+  {%  for coach in coaches  %}
+    <p>Name: {{  coach.first_name  }} {{  coach.last_name  }}</p>
+    <p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
+  
+    <p>Specialty Code: {{  coach.interests  }}</p>
+    
+    <br>
+  {%  endfor%}
+
+  <h3>Learners</h3>
+  {%  for learner in learners  %}
+    <p>Name: {{  learner.first_name  }} {{  learner.last_name  }}</p>
+    <p>Username: <a href="/learner/{{  learner.id  }}/">{{  learner.username  }}</a></p>
+    
+    <p>Specialty Code: {{  learner.interests  }}</p>
+
+
+    <br>
+  {%  endfor  %}
+{%  endblock  %}
