@@ -50,7 +50,9 @@ def message_details(request, message_id: int):
 
 @login_required
 def notification_view(request):
-    notifications = 'Notifications coming soon'
+    notifications = Notification.objects.filter(
+        mentioned_user=request.user
+        ).order_by('-mention')
     return render(
         request,
         'notifications.html',
