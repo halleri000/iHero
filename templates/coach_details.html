@@ -1,9 +1,32 @@
 {%  extends 'base.html'  %}
-
+ 
 {%  block content  %}
-  <p>{{  coach  }}</p>
 
-  {%  for task in assigned_tasks  %}
-    <a href="/task/{{  task.id  }}/">{{  task  }}</a>
-  {%  endfor  %}
+  <div class="container mt-5">
+    <h3 class="text-center my-3"> {{  coach.first_name  }} {{  coach.last_name  }}'s profile </h3>
+    <div class="card  my-3">
+      <div class="card-body">
+  <p>Username: {{  coach.username  }}</p>
+  <p>Email: {{  coach.email  }}</p>
+  <p>Website: {{  coach.website  }}</p>
+  <p>Age: {{  coach.age  }}</p>
+  <p>Specialty Code: {{  coach.interests  }}</p>
+
+</div>
+</div>
+<!-- To do: research how to translate the code in db into the value 
+<p>Is Coach?:  {{  coach.is_coach  }}</p>-->
+<h5 class='text-center my-3'> Tasks </h5>
+  <div class="col-7 taskcard card my-3">
+  <div class="card-body">
+{% for task in assigned_tasks %}
+
+    <p class='text-center'><a href="/task/{{  task.id  }}/">{{ task }}</a></p>
+
+{% endfor %}
+  </div>
+</div>
+</div>
+
+ 
 {%  endblock  %}

@@ -1,0 +1,16 @@
+
+.content{
+  margin-top:100px;
+}
+ 
+a {
+  text-decoration: none;
+  color:black;
+}
+ 
+
+.taskcard{
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
