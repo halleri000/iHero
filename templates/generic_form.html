@@ -1,23 +1,21 @@
-{% extends 'base.html' %}
-
+{%extends 'base.html' %} 
+{%load crispy_forms_tags %}
 
 {% block content %}
-<section class="container-fluid h-100 row align-items-center">
-  <div class="col-12 col-md-6 col-lg-4 px-1">
-    <h2 class="text-center">{{ title }}</h2>
-
-    <div class="card">
-      <div class="card-body">
-        <form method="post" action="">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <div class="text-center">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-        <p>{{ message }}</p>
-      </div>
+<div id='form' class='container-fluid h-100 row align-items-center'>
+  <div class='row justify-content-center'>
+    <div class='col-8'>
+      <h2>{{ title }}</h2>
+      <hr class="mt-0 mb-4">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class='btn btn-success'>Submit</button>
+      </form>
+      <p>{{ message }}</p>
     </div>
   </div>
-</section>
+</div>
+ 
 {% endblock %}
+

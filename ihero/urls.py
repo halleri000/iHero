@@ -21,6 +21,9 @@ from user_app import views as u_views
 from tasks import views as t_views
 from notifications import views as n_views
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
 urlpatterns = [
     path('learner/<int:user_id>/', u_views.LearnerDetailsView.as_view(), name='learner'),
     path('welcome/', u_views.HeroesView.as_view(), name='heroes'),
@@ -47,3 +50,5 @@ urlpatterns = [
 
 handler404 = "user_app.views.handle404error"
 handler500 = "user_app.views.handle500error"
+
+urlpatterns += staticfiles_urlpatterns()

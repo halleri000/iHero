@@ -1,16 +1,24 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 {% block content %}
-<p><strong>Hi {{ user.username }}!</strong>
-<p><a href="/add_message/">Click here to start a message</a>
 
-{% for message in messages %}
-<ul>
-  <li>
-    <p>{{ message.text }}
-    <p>{{ message.time_date }}
-    <p>{{ message.assigned_message }}
-  </li>
-</ul>
-{% endfor %}
+<div class="container ">
+  <div class="row ">
+    <div class=' my-3 text-center h1'>Messages</div>
+    <div><button class="my-3 text-center  h5"><a href="/add_message/">Post</a> </button></div>
 
-  {% endblock %}
+  </div>
+  {% for message in messages %}
+  <!--<div class="col-lg-4 col-12 col-md-6 my-3">-->
+  <div class=" card my-2">
+    <div class="card-body">
+      <p>Posted By: <strong class='text-gray-dark '>{{ message.assigned_message }}</strong></p>
+      <p>{{ message.text }}</p>
+      <p>
+        Posted: {{ message.time_date }}</p>
+    </div>
+  </div>
+
+
+  {% endfor %}
+</div>
+{% endblock %}

@@ -8,33 +8,46 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
     integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  {%load static %}
+  <link rel='stylesheet' type='text/css' href="{% static 'css/style.css/' %}">
   <title>iHero</title>
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #20c1e9;">
     <div class="container">
       <a href="#" class="navbar-brand">
         <div class="d-flex align-items-center">
-          <img src="img/logo.svg" class="img-fluid icon" alt="clock icon">
-          <h3>iHero Task Manager</h3>
+          <img src='{% static "media/clock.png" %}' alt='placeholder' height=50px width=50px>
         </div>
       </a>
+      <h3> iHero </h3>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item mx-2"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item mx-2"><a class="nav-link" href='/welcome/'> Welcome </a></li>
-          <li class="nav-item mx-2"><a class="nav-link" href='/coaches/'>Coaches</a></li>
-          <li class="nav-item mx-2"><a class="nav-link" href='/learners/'> Learners </a></li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item mx-2"><a class="nav-link" href="/welcome/">Welcome</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/coaches/'> Coaches </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/learners/'>Learners</a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/messages/'> Messages </a></li>
+          {% if request.user.is_staff %}
+          <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User Tasks </a></li>
+          {%endif%}
           <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Notifications </a></li>
-          <li class="nav-item mx-2"><a class="nav-link" href='/logout/'>Logout </a></li>
+          {% if request.user.is_coach %}
+          <li class="nav-item mx-2"><a class="nav-link" href='/coach/{{request.user.id}}/'> Profile </a></li>
+          {%else%}
+          <li class="nav-item mx-2"><a class="nav-link" href='/learner/{{request.user.id}}/'>Profile</a></li>
+          {%endif%}
 
+          <li class="nav-item mx-2"><a class="nav-link" href='/logout/'>Logout </a></li>
+          {%else%}
+          <li class="nav-item mx-2"><a class="nav-link" href='/login/'>Login </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/signup/'>Sign-up </a></li>
+          {%endif%}
         </ul>
       </div>
     </div>
