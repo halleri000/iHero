@@ -3,6 +3,16 @@
 
 {%  block content  %}
 <div class="container">
+
+  <h1 class="text-center my-3"> Success Rate of the Crew </h1>
+  
+  <div class="flex_grandparent">
+    <div class='flex_parent'>
+      {%  for task in tasks  %}
+        {%  include "powerbar.html" with task=task  %}
+      {%  endfor  %}
+    </div>
+  </div>
   
     <h1 class="text-center my-3"> Dashboard </h1>
   

@@ -36,7 +36,7 @@ def add_message(request):
             return HttpResponseRedirect(reverse('messages'))
 
     form = AddMessageForm()
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'title': "Add Message", 'message': "Use @ to mention a coach."})
 
 
 def message_details(request, message_id: int):
