@@ -3,6 +3,14 @@
 
 {% block content %}
 <div class="container">
+  <h1 class="text-center my-3"> Suucess Rate </h1>
+  <div class="flex_grandparent">
+    <div class='flex_parent'>
+      {%  for task in tasks  %}
+        {%  include "powerbar.html" with task=task  %}
+      {%  endfor  %}
+    </div>
+  </div>
   <h1 class="text-center my-3">Coaches</h1>
   <div class="row">
     {% for coach in coaches %}
