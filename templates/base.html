@@ -1,4 +1,4 @@
-{%load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
     integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+    {%load static %}
+  <link rel='stylesheet' type='text/css' href="{% static 'css/style.css/' %}">
   <title>iHero</title>
 </head>
 
@@ -19,10 +20,10 @@
     <div class="container">
       <a href="#" class="navbar-brand">
         <div class="d-flex align-items-center">
-          <img src="img/logo.svg" class="img-fluid icon" alt="clock icon">
-          <h3>iHero Task Manager</h3>
+          <img src='{% static "media/clock.png" %}' alt='placeholder' height=50px width=50px>
         </div>
       </a>
+      <h3> iHero </h3>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,7 +43,11 @@
           {%else%}
           <li class="nav-item mx-2"><a class="nav-link" href='/learner/{{request.user.id}}/'>Profile</a></li>
           {%endif%}
+          
           <li class="nav-item mx-2"><a class="nav-link" href='/logout/'>Logout </a></li>
+          {%else%}
+          <li class="nav-item mx-2"><a class="nav-link" href='/login/'>Login </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/signup/'>Sign-up </a></li>
           {%endif%}
         </ul>
       </div>

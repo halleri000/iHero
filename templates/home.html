@@ -1,17 +1,23 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 {%load static %}
-{%  block content  %}
-<a href='/login/'> Login </a> &ensp;
-<a href='/signup/'> Sign-Up </a>
+{% block content %}
 
-<div>
-  <h2> iHero </h2>
-  <img src='{% static "media/billyBobs.jpg" %}' alt='placeholder' height=100px width=100px>
-  <p>This will be the generic home page that is displayed when a User is NOT logged in</p>
-  <p> {{  welcome  }}</p>
+
+<div class='home'>
+  <div class=' joinus'>
+    <p>How would you like to experience more power in your day to day life…?
+      Here at iHero we specialize in task management and allow for our users to really discover what is at the edge of
+      their comfort zone. Not only that, our members inspire other members to experience more power in their lives as
+      well!
+    </p>
+    <p>Login or create account to get in touch with others </p>
+  </div>
+  <div class='hush'>
+    <img class='randomvoice' src='{% static "media/hero.jpg" %}' alt='hero'>
+  </div>
 </div>
 
-{%  endblock  %}
 
+</div>
 
-
+{% endblock %}

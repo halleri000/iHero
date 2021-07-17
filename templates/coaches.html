@@ -17,15 +17,16 @@
     <div class="col-lg-4 col-12 col-md-6 my-3">
       <div class="card">
         <div class="card-body">
-          <p>{{ coach }}</p>
           <p>Name: {{ coach.first_name }} {{ coach.last_name }}</p>
           <p>Username: <a href="/coach/{{  coach.id  }}/">{{ coach.username }}</a></p>
-          <p>Email: {{ coach.email }}</p>
-          <p>Website: <a href="{{  coach.website  }}">{{ coach.website }}</a></p>
           <p>Age: {{ coach.age }}</p>
-          <p>Specialty Code: {{ coach.interests }}</p>
+          <p>Specialty: {{ coach.interests }}</p>
+          <p>Website: <a href="{{  coach.website  }}">{{ coach.website }}</a></p>
+          <!--<p>Email: {{ coach.email }}</p>
+          
+          <p>Is Coach?: {{ coach.is_coach }}</p> -->
           <!-- To do: research how to translate the code in db into the value -->
-          <p>Is Coach?: {{ coach.is_coach }}</p>
+          
           <br>
         </div>
       </div>

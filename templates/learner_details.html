@@ -4,13 +4,14 @@
 
 <div class="container mt-5">
   <h3 class="text-center my-3"> {{ learner.first_name }} {{ learner.last_name }}'s profile </h3>
-  <div class="card  my-3">
+  <div class="card my-3 col-6">
     <div class="card-body">
-      <p>Username: {{ learner.username }}</p>
-      <p>Email: {{ learner.email }}</p>
-      <p>Website: {{ learner.website }}</p>
+      <p>Hi my name is {{ learner.first_name }} {{ learner.last_name }}</p>
+      Aboot me
+      <p>{{learner.bio}}</p>
+      You can view my work at {{learner.website }} or contect me with {{learner.email}}
       <p>Age: {{ learner.age }}</p>
-      <p>Specialty Code: {{ learner.interests }}</p>
+      <p> I am interested in {{ learner.interests }}</p>
     </div>
   </div>
   <!-- To do: research how to translate the code in db into the value 
@@ -23,7 +24,7 @@
   </div>
 
 
-    <div class="col-7 taskcard my-3">
+    <div class="col-7 taskcard card my-3">
     <div class="card-body">
   {% for task in assigned_tasks %}
 

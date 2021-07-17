@@ -1,16 +1,64 @@
 
-.content{
-  margin-top:100px;
-}
- 
-a {
-  text-decoration: none;
-  color:black;
-}
- 
-
 .taskcard{
   margin: 0 auto;
   float: none;
   margin-bottom: 10px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+nav {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+.flex_grandparent {
+  display: flex;
+  justify-content: center;
+}
+.flex_parent {
+  display: flex;
+  height: 40px;
+  width: 90%;
+}
+
+.flex_true {
+  display: inline;
+  background-color: green;
+  flex-grow: 1;
+}
+.flex_false {
+  display: inline;
+  background-color: red;
+  flex-grow: 1;
+}
+
+.randomvoice{
+  object-fit:contain;
+  max-width: 50%;
+}
+
+.hush{
+  display:flex;
+  justify-content:center;
+  
+
+}
+
+.home{
+  display:flex;
+  flex-direction:row;
+ 
+}
+.joinus{
+  display:flex;
+  justify-content:center;
+  flex-direction: column;
+  padding: 200px;
 }
