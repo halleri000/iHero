@@ -2,7 +2,20 @@
 
 {%  block content  %}
   <p>{{  coach  }}</p>
-
+  <div class="container">
+  <div class="card my-3">
+    <div class="card-body">
+        <p>Name: {{  coach.first_name  }} {{  coach.last_name  }}</p>
+        <p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
+        <p>Email: {{  coach.email  }}</p>
+        <p>Website: {{  coach.website  }}</p>
+        <p>Age: {{  coach.age  }}</p>
+        <p>Specialty Code: {{  coach.interests  }}</p>
+        <!-- To do: research how to translate the code in db into the value -->
+        <p>Is Coach?:  {{  coach.is_coach  }}</p>
+      </div>
+    </div>
+  </div>
   {%  for task in assigned_tasks  %}
     <a href="/task/{{  task.id  }}/">{{  task  }}</a>
   {%  endfor  %}

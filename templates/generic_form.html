@@ -1,13 +1,23 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 
 
+{% block content %}
+<section class="container-fluid h-100 row align-items-center">
+  <div class="col-12 col-md-6 col-lg-4 px-1">
+    <h2 class="text-center">{{ title }}</h2>
 
-{%  block content  %}
-  <h2>{{  title  }}</h2>
-  <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-  </form>
-  <p>{{  message  }}</p>
-{%  endblock  %}
+    <div class="card">
+      <div class="card-body">
+        <form method="post" action="">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="text-center">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+        <p>{{ message }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

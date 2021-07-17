@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
+    integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   <title>iHero</title>
 </head>
+
 <body>
-  <a href="/">Home</a> &ensp;
-  <a href='/welcome/'> Welcome </a> &ensp;
-  <a href='/coaches/'>Coaches</a> &ensp;
-  <a href='/learners/'> Learners </a> &ensp;
-  <a href='/messages/'> Messages </a> &ensp;
-  <a href='/notifications/'> Notifications </a> &ensp;
-  <a href='/logout/'>Logout </a> &ensp;
+  <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #20c1e9;">
+    <div class="container">
+      <a href="#" class="navbar-brand">
+        <div class="d-flex align-items-center">
+          <img src="img/logo.svg" class="img-fluid icon" alt="clock icon">
+          <h3>iHero Task Manager</h3>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item mx-2"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/welcome/'> Welcome </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/coaches/'>Coaches</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/learners/'> Learners </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/messages/'> Messages </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Notifications </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/logout/'>Logout </a></li>
 
-
-  {%  block content %}{%  endblock  %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block content %}
+ {% endblock %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"
+    integrity="sha512-a6ctI6w1kg3J4dSjknHj3aWLEbjitAXAjLDRUxo2wyYmDFRcz2RJuQr5M3Kt8O/TtUSp8n2rAyaXYy1sjoKmrQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
-
-
