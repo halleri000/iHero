@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
     integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {%load static %}
+  {%load static %}
   <link rel='stylesheet' type='text/css' href="{% static 'css/style.css/' %}">
   <title>iHero</title>
 </head>
 
 <body>
-  
+
   <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #20c1e9;">
     <div class="container">
       <a href="#" class="navbar-brand">
@@ -34,16 +33,16 @@
           <li class="nav-item mx-2"><a class="nav-link" href='/coaches/'> Coaches </a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/learners/'>Learners</a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/messages/'> Messages </a></li>
-            {% if request.user.is_staff %}
-              <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User Tasks </a></li>
-            {%endif%}
+          {% if request.user.is_staff %}
+          <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User Tasks </a></li>
+          {%endif%}
           <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Notifications </a></li>
           {% if request.user.is_coach %}
           <li class="nav-item mx-2"><a class="nav-link" href='/coach/{{request.user.id}}/'> Profile </a></li>
           {%else%}
           <li class="nav-item mx-2"><a class="nav-link" href='/learner/{{request.user.id}}/'>Profile</a></li>
           {%endif%}
-          
+
           <li class="nav-item mx-2"><a class="nav-link" href='/logout/'>Logout </a></li>
           {%else%}
           <li class="nav-item mx-2"><a class="nav-link" href='/login/'>Login </a></li>

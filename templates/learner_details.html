@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container profile mt-5">
   <h3 class="text-center my-3"> {{ learner.first_name }} {{ learner.last_name }}'s profile </h3>
-  <div class="card my-3 col-6">
+  <div class="card profilecard my-3 ">
     <div class="card-body">
-      <p>Hi my name is {{ learner.first_name }} {{ learner.last_name }}</p>
-      Aboot me
+      <p>About me</p>
       <p>{{learner.bio}}</p>
-      You can view my work at {{learner.website }} or contect me with {{learner.email}}
+      You can view my work at {{learner.website }} or connect with me{{learner.email}}
       <p>Age: {{ learner.age }}</p>
       <p> I am interested in {{ learner.interests }}</p>
     </div>
@@ -17,23 +16,24 @@
   <!-- To do: research how to translate the code in db into the value 
   <p>Is Coach?:  {{  coach.is_coach  }}</p>-->
   <div class="row ">
-    <div class='col-8 my-3 text-center h5'>Tasks
-    {% if request.user.id == learner.id %}
-    <button class="text-center my-3"><a href="/addtask/">Add Task</a> </button></div>
+    <div class=' my-3  text-center h5'>Tasks
+      {% if request.user.id == learner.id %}
+      <button class="text-center my-3"><a href="/addtask/">Add Task</a> </button>
+    </div>
     {%endif%}
   </div>
 
+</div>
+<div class=" taskcard card my-3">
+  <div class="card-body">
+    {% for task in assigned_tasks %}
 
-    <div class="col-7 taskcard card my-3">
-    <div class="card-body">
-  {% for task in assigned_tasks %}
+    <p class='text-center'><a href="/task/{{  task.id  }}/">{{ task }}</a></p>
 
-      <p class='text-center'><a href="/task/{{  task.id  }}/">{{ task }}</a></p>
-
-  {% endfor %}
-    </div>
+    {% endfor %}
   </div>
 </div>
+
 
 
 
