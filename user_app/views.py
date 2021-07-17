@@ -109,14 +109,16 @@ class CoachDetailsView(LoginRequiredMixin, View):
 
 @login_required
 def coachList(request):
+  tasks = Task.objects.filter(assigned_to__is_coach=True).order_by('-completed')
   coaches = HeroUser.objects.filter(is_coach=True).order_by('interests')
-  return render(request, 'coaches.html', {'coaches': coaches})
+  return render(request, 'coaches.html', {'coaches': coaches, 'tasks': tasks})
 
 
 @login_required
 def learnerList(request):
   learners = HeroUser.objects.filter(is_coach=False).order_by('interests')
-  return render(request, 'learners.html', {'learners': learners})
+  tasks = Task.objects.filter(assigned_to__is_coach=False).order_by('-completed')
+  return render(request, 'learners.html', {'learners': learners, 'tasks': tasks})
 
 
 def logoutUser(request):
@@ -125,10 +127,11 @@ def logoutUser(request):
 
 
 def handle404error(request, exception):
-  return render(request, '404.html')
+    return render(request, '404.html', status=404)
 
-def handle500error(request, template_name='500.html'):
-  return render(request, '500.html')
+
+def handle500error(request):
+    return render(request, '500.html', status=500)
 
 
 def deleteme(request):

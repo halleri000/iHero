@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect
 from .forms import AddTaskForm, addTaskFormCoach
 from .models import Task
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,6 @@ def newTaskByLearner(request):
       newTask = form.save(commit=False)
       newTask.assigned_to = request.user
       newTask.save()
-      HttpResponse("Success")
       form = AddTaskForm()
       return render(request, 'generic_form.html', {'form': form, 'title': "New Task", 'message': "Would you like to add something else to your list?"})
   form = AddTaskForm()
