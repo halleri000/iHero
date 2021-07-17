@@ -8,6 +8,7 @@ authors = ["moelogins <moelogins@gmail.com>"]
 python = "^3.9"
 Django = "^3.2.5"
 python-dotenv = "^0.18.0"
+django-crispy-forms = "^1.12.0"
 
 [tool.poetry.dev-dependencies]
 
