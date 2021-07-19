@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<br>
+<h3 class="text-center my-3 h1"> {{ learner.first_name|title }} {{ learner.last_name|title }}'s Profile </h3>
 <div class="container profile mt-5">
-  <h3 class="text-center my-3"> {{ learner.first_name }} {{ learner.last_name }}'s profile </h3>
+  
   <div class="card profilecard my-3 ">
     <div class="card-body">
-      <p>About me</p>
       <p>{{learner.bio}}</p>
       You can view my work at {{learner.website }} or connect with me{{learner.email}}
       <p>Age: {{ learner.age }}</p>
@@ -15,26 +15,46 @@
   </div>
   <!-- To do: research how to translate the code in db into the value 
   <p>Is Coach?:  {{  coach.is_coach  }}</p>-->
+
+
   <div class="row ">
-    <div class=' my-3  text-center h5'>Tasks
+    <div class=' my-3 text-center h4'>Tasks
       {% if request.user.id == learner.id %}
-      <button class="text-center my-3"><a href="/addtask/">Add Task</a> </button>
+      <button class="text-center my-3 h6"><a href="/addtask/">Add Task</a> </button>
+      {%endif%}
     </div>
-    {%endif%}
+    
   </div>
 
-</div>
+
 <div class=" taskcard card my-3">
   <div class="card-body">
-    {% for task in assigned_tasks %}
+     <h5 class="text-center my-3 h5"> Efficiency </h5>
+  <div class="flex_grandparent">
+    <div class='flex_parent'>
+      {% for assigned_task in assigned_tasks %}
+      {% include "powerbar.html" with task=assigned_task %}
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+  {% for task in assigned_tasks %}
+  <p class='text-left tasks'>
 
-    <p class='text-center'><a href="/task/{{  task.id  }}/">{{ task }}</a></p>
-
+    {%if task.completed %}
+    <span>&#10003; &ensp;</span><a href="/task/{{  task.id  }}/">{{ task }}</a>
+    <a class='taskbtns' href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
+    {% else %}
+    <a href="/task/{{  task.id  }}/">{{ task }}</a>
+    <a class='taskbtns' href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
+    {%endif%}
+  </p>
     {% endfor %}
   </div>
+ 
 </div>
 
 
-
+</div>
 
 {% endblock %}
