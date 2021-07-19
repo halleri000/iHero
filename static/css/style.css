@@ -78,7 +78,7 @@ img{
 }
 
 .card {
-  background: 		rgb(248,248,255);
+  background:rgb(248,248,255);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
