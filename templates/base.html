@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
     integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap" rel="stylesheet">
+    
   {%load static %}
   <link rel='stylesheet' type='text/css' href="{% static 'css/style.css/' %}">
   <title>iHero</title>
@@ -15,28 +17,29 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #20c1e9;">
-    <div class="container">
-      <a href="#" class="navbar-brand">
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top py-1" style="background-color: #20c1e9;">
+      <a href="/welcome/" class="navbar-brand">
         <div class="d-flex align-items-center">
           <img src='{% static "media/clock.png" %}' alt='placeholder' height=50px width=50px>
-        </div>
-      </a>
+     
+      
       <h3> iHero </h3>
+       </div>
+    </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse " id="navmenu">
+        <ul class="navbar-nav navbar-right ms-auto">
           {% if request.user.is_authenticated %}
-          <li class="nav-item mx-2"><a class="nav-link" href="/welcome/">Welcome</a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/coaches/'> Coaches </a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/learners/'>Learners</a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/messages/'> Messages </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Mentions </a></li>
           {% if request.user.is_staff %}
-          <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User Tasks </a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User-Tasks </a></li>
           {%endif%}
-          <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Notifications </a></li>
+          
           {% if request.user.is_coach %}
           <li class="nav-item mx-2"><a class="nav-link" href='/coach/{{request.user.id}}/'> Profile </a></li>
           {%else%}
@@ -50,7 +53,7 @@
           {%endif%}
         </ul>
       </div>
-    </div>
+
   </nav>
   {% block content %}
   {% endblock %}

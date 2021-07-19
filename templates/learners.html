@@ -1,8 +1,11 @@
 {%  extends 'base.html'  %}
 
 {%  block content  %}
+<br>
 <div class="container">
-  <h1 class="text-center my-3"> Success Rate </h1>
+  <h1 class="text-center my-3"> Learners </h1>
+  <br>
+  <h3 class="text-center my-3"> Efficiency </h3>
   <div class="flex_grandparent">
     <div class='flex_parent'>
       {%  for task in tasks  %}
@@ -10,7 +13,8 @@
       {%  endfor  %}
     </div>
   </div>
-  <h1 class="text-center my-3"> Learners </h1>
+  
+  <br>
   <div class="row">
 
     {%  for learner in learners  %}

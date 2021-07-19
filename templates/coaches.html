@@ -2,16 +2,20 @@
 
 
 {% block content %}
+<br>
 <div class="container">
-  <h1 class="text-center my-3"> Suucess Rate </h1>
+  <h1 class="text-center my-3">Coaches</h1>
+  <br>
+  <h3 class="text-center my-3"> Efficiency </h3>
   <div class="flex_grandparent">
     <div class='flex_parent'>
-      {%  for task in tasks  %}
-        {%  include "powerbar.html" with task=task  %}
-      {%  endfor  %}
+
+      {% for task in tasks %}
+      {% include "powerbar.html" with task=task %}
+      {% endfor %}
     </div>
   </div>
-  <h1 class="text-center my-3">Coaches</h1>
+  <br>
   <div class="row">
     {% for coach in coaches %}
     <div class="col-lg-4 col-12 col-md-6 my-3">
@@ -26,12 +30,14 @@
           
           <p>Is Coach?: {{ coach.is_coach }}</p> -->
           <!-- To do: research how to translate the code in db into the value -->
-          
+
           <br>
         </div>
       </div>
     </div>
     {% endfor %}
+  
+
   </div>
 </div>
 {% endblock %}

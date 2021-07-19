@@ -3,9 +3,9 @@
 
 {%  block content  %}
 
-
+<br>
   <p>Task: {{  task  }}</p>
-  <p>Assigned To: {{  task.assigned_to  }}</p>
+  <p>Assigned To: {{  task.assigned_to|title  }}</p>
   <p>Completed Status: {{  task.completed  }}</p>
   <p>Date Submitted: {{  task.submitted_on  }}</p>
   <a href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
