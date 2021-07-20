@@ -24,21 +24,21 @@
     <div class="col-lg-4 col-12 col-md-6 my-3">
       <div class="card">
         <div class="card-body">
-          <p>Hello my name is <a href="/coach/{{  coach.id  }}/">
+          <p>
+            Hello my name is 
+            <a href="/coach/{{  coach.id  }}/">
             {{ coach.first_name }} {{ coach.last_name }} 
-          </a>
-          and I am {{ coach.age }} years of age.</p>
-     
-      You can view my work <a href="/coach/{{  coach.website  }}/"> Here</a> <br>
-      or connect with me <a href="/coach/{{  coach.email  }}/">Here</a>
-      <br>
+            </a>
+          and I am {{ coach.age }} years of age.
+          </p>
+      <p>You can view my work 
+        <a href="{{  coach.website  }}/"> Here</a>
+        <br>
+      or contact me <a href="mailto:{{  coach.email  }}/">Here</a>
+      </p>
+      
       <br>
       <p> Also, I am interested in {{ coach.interests }} </p>
-          <!--<p>Email: {{ coach.email }}</p>
-          
-          <p>Is Coach?: {{ coach.is_coach }}</p> -->
-          <!-- To do: research how to translate the code in db into the value -->
-
           <br>
         </div>
       </div>
