@@ -3,6 +3,12 @@
 
 {% block content %}
 {%load static %}
+<br>
+<div class="justify-content-center col-12 d-flex align-items-center">
+      <img class='w-25' src='{% static "media/images.png" %}' alt='I do!'>&nbsp; &nbsp; &nbsp;
+      <h1 class="text-center">Coaches</h1>
+    </div>
+    <br>
 <div class="container">
   <h1 class="text-center my-3"> Success Rate of the Crew</h1>
   <div class="flex_grandparent">
@@ -12,17 +18,17 @@
       {%  endfor  %}
     </div>
   </div>
-  <div class="justify-content-center col-12 d-flex align-items-center">
-        <img class='w-25' src='{% static "media/images.png" %}' alt='I do!'>&nbsp; &nbsp; &nbsp;
-        <h1 class="text-center">Coaches</h1>
-      </div>
+  <br>
   <div class="row justify-content-center">
   {% for coach in coaches %}
     <div class="col-lg-4 col-12 col-md-6 my-3">
       <div class="card">
         <div class="card-body">
-          <p>Hello my name is {{ coach.first_name }} {{ coach.last_name }} and I am {{ coach.age }} years of age.</p>
-    
+          <p>Hello my name is <a href="/coach/{{  coach.id  }}/">
+            {{ coach.first_name }} {{ coach.last_name }} 
+          </a>
+          and I am {{ coach.age }} years of age.</p>
+     
       You can view my work <a href="/coach/{{  coach.website  }}/"> Here</a> <br>
       or connect with me <a href="/coach/{{  coach.email  }}/">Here</a>
       <br>
