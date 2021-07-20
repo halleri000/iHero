@@ -13,7 +13,6 @@ def loginUser(request):
     form = LoginHeroForm(request.POST)
     if form.is_valid():
       data = form.cleaned_data
-      print('data: ', data)
       if HeroUser.objects.filter(username=data['username']).exists():
         user = authenticate(username=data['username'], password=data['password'])
         login(request, user)
@@ -48,6 +47,10 @@ def createUser(request):
             if data['is_coach'] == True:
               new_user.is_staff = True
               new_user.save()
+            Task.objects.create(
+              task = "Navigate website, get to know who your fellow coaches/peers are, and start creating tasks",
+              assigned_to = new_user
+              )
             user = authenticate(username=data['username'], password=data['password'])
             login(request, user)
             return HttpResponseRedirect(reverse('heroes'))
@@ -71,7 +74,6 @@ class LearnerDetailsView(LoginRequiredMixin, View):
             'assigned_tasks': assigned_tasks,
         }
         return render(request, 'learner_details.html', context)
-
 
 
 class HeroesView(LoginRequiredMixin, View):
@@ -132,10 +134,3 @@ def handle404error(request, exception):
 
 def handle500error(request):
     return render(request, '500.html', status=500)
-
-
-def deleteme(request):
-  tasks = Task.objects.all().order_by('-completed')
-  coaches = HeroUser.objects.filter(is_coach=True).order_by('interests')
-  learners = HeroUser.objects.filter(is_coach=False).order_by('interests')
-  return render(request, 'deleteme.html', {'tasks': tasks, 'coaches': coaches, 'learners': learners})
