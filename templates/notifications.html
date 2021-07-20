@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<br>
 <div class="container">
-  <h3 class="text-center my-3"> Mentions </h3>
+  <h3 class="text-center my-3 h1"> Mentions </h3>
+  <br>
   {% for notification in notifications %}
   <!--<div class="col-lg-4 col-12 col-md-6 my-3">-->
   <div class="card  my-3">
     <div class="card-body">
-      <p>Posted by: <strong class=' text-gray-dark '>{{ notification.mention.assigned_message }}</strong></p>
+      <p>Posted by: <strong class=' text-gray-dark '>{{ notification.mention.assigned_message|title }}</strong></p>
       <p> {{notification.mention.text}}</p>
       <p>
         Posted: {{ notification.mention.time_date }}</p>

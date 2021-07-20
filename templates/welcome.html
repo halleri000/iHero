@@ -1,57 +1,60 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 
 
-{%  block content  %}
+{% block content %}
+<br>
 <div class="container">
+  <h1 class="text-center my-3"> Dashboard </h1>
+  <br>
+  <h3 class="text-center my-3"> Crew Efficiency </h3>
 
-  <h1 class="text-center my-3"> Success Rate of the Crew </h1>
-  
   <div class="flex_grandparent">
     <div class='flex_parent'>
-      {%  for task in tasks  %}
-        {%  include "powerbar.html" with task=task  %}
-      {%  endfor  %}
+      {% for task in tasks %}
+      {% include "powerbar.html" with task=task %}
+      {% endfor %}
     </div>
   </div>
-  
-    <h1 class="text-center my-3"> Dashboard </h1>
-  
-    <div class="row">
-      <div class="col-6">
-        <h3 class="text-center">Coaches</h3>
-        {%  for coach in coaches  %}
-        <div class="card my-3">
-          <div class="card-body">
-              <p>Name: {{  coach.first_name  }} {{  coach.last_name  }}</p>
-              <p>Username: <a href="/coach/{{  coach.id  }}/">{{  coach.username  }}</a></p>
-              <p>Email: {{  coach.email  }}</p>
-              <p>Website: {{  coach.website  }}</p>
-              <p>Age: {{  coach.age  }}</p>
-              <p>Specialty Code: {{  coach.interests  }}</p> 
-               <!--To do: research how to translate the code in db into the value-->
-              <p>Is Coach?:  {{  coach.is_coach  }}</p>
-            </div>
-          </div>
-            {%  endfor%}
-      </div>
-      <div class="col-6">
-      <h3 class="text-center">Learners</h3>
-      {%  for learner in learners  %}
+  <br>
+
+
+
+
+  <div class="row">
+    <div class="col-6">
+      <h3 class="text-center">Coaches</h3>
+      {% for coach in coaches %}
       <div class="card my-3">
         <div class="card-body">
-          <p>Name: {{  learner.first_name  }} {{  learner.last_name  }}</p>
-          <p>Username: <a href="/learner/{{  learner.id  }}/">{{  learner.username  }}</a></p>
-          <p>Email: {{  learner.email  }}</p>
-          <p>Website: {{  learner.website  }}</p>
-          <p>Age: {{  learner.age  }}</p>
-          <p>Specialty Code: {{  learner.interests  }}</p>
-          <!-- To do: research how to translate the code in db into the value-->
-          <p>Is Coach?:  {{  learner.is_coach  }}</p>
+          <p>Name: {{ coach.first_name }} {{ coach.last_name }}</p>
+          <p>Username: <a href="/coach/{{  coach.id  }}/">{{ coach.username }}</a></p>
+          <p>Email: {{ coach.email }}</p>
+          <p>Website: {{ coach.website }}</p>
+          <p>Age: {{ coach.age }}</p>
+          <p>Specialty Code: {{ coach.interests }}</p>
+          <!--To do: research how to translate the code in db into the value-->
+          <p>Is Coach?: {{ coach.is_coach }}</p>
         </div>
       </div>
-      {%  endfor  %}
+      {% endfor%}
     </div>
+    <div class="col-6">
+      <h3 class="text-center">Learners</h3>
+      {% for learner in learners %}
+      <div class="card my-3">
+        <div class="card-body">
+          <p>Name: {{ learner.first_name }} {{ learner.last_name }}</p>
+          <p>Username: <a href="/learner/{{  learner.id  }}/">{{ learner.username }}</a></p>
+          <p>Email: {{ learner.email }}</p>
+          <p>Website: {{ learner.website }}</p>
+          <p>Age: {{ learner.age }}</p>
+          <p>Specialty Code: {{ learner.interests }}</p>
+          <!-- To do: research how to translate the code in db into the value-->
+          <p>Is Coach?: {{ learner.is_coach }}</p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
-    {%  endblock  %}
-  
+</div>
+{% endblock %}
