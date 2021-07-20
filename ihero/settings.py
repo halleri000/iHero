@@ -59,6 +59,8 @@ MIDDLEWARE = [
 ]
  
 ROOT_URLCONF = 'ihero.urls'
+
+MEDIA_ROOT = 'static/media'
  
 TEMPLATES = [
     {

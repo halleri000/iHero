@@ -21,11 +21,13 @@
     <div class="col-lg-4 col-12 col-md-6 my-3">
       <div class="card">
         <div class="card-body">
-          <p>Name: {{ coach.first_name }} {{ coach.last_name }}</p>
-          <p>Username: <a href="/coach/{{  coach.id  }}/">{{ coach.username }}</a></p>
-          <p>Age: {{ coach.age }}</p>
-          <p>Specialty: {{ coach.interests }}</p>
-          <p>Website: <a href="{{  coach.website  }}">{{ coach.website }}</a></p>
+          <p>Hello my name is {{ coach.first_name }} {{ coach.last_name }} and I am {{ coach.age }} years of age.</p>
+    
+      You can view my work <a href="/coach/{{  coach.website  }}/"> Here</a> <br>
+      or connect with me <a href="/coach/{{  coach.email  }}/">Here</a>
+      <br>
+      <br>
+      <p> Also, I am interested in {{ coach.interests }} </p>
           <!--<p>Email: {{ coach.email }}</p>
           
           <p>Is Coach?: {{ coach.is_coach }}</p> -->
