@@ -2,22 +2,22 @@
 
 
 {% block content %}
-<br>
+{%load static %}
 <div class="container">
-  <h1 class="text-center my-3">Coaches</h1>
-  <br>
-  <h3 class="text-center my-3"> Efficiency </h3>
+  <h1 class="text-center my-3"> Success Rate of the Crew</h1>
   <div class="flex_grandparent">
     <div class='flex_parent'>
-
-      {% for task in tasks %}
-      {% include "powerbar.html" with task=task %}
-      {% endfor %}
+      {%  for task in tasks  %}
+      {%  include "powerbar.html" with task=task  %}
+      {%  endfor  %}
     </div>
   </div>
-  <br>
-  <div class="row">
-    {% for coach in coaches %}
+  <div class="justify-content-center col-12 d-flex align-items-center">
+        <img class='w-25' src='{% static "media/images.png" %}' alt='I do!'>&nbsp; &nbsp; &nbsp;
+        <h1 class="text-center">Coaches</h1>
+      </div>
+  <div class="row justify-content-center">
+  {% for coach in coaches %}
     <div class="col-lg-4 col-12 col-md-6 my-3">
       <div class="card">
         <div class="card-body">

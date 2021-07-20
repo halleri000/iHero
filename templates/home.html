@@ -1,12 +1,21 @@
-{%  extends 'base.html'  %}
+{% extends 'base.html' %}
 {%load static %}
-{%  block content  %}
+{% block content %}
 
-<div class='home container'>
-  <div class='welcome'>
+
+<!-- <div class='home'>
+  <div class=' joinus'>
 <p>How would you like to experience more power in your day to day life…?
-  Here at iHero we specialize in task management and allow for our users to really discover what is at the edge of their comfort zone. Not only that, our members inspire other members to experience more power in their lives as well!
+  <div class='hush'>
+    <img class='randomvoice' src='{% static "media/3356606.jpg" %}' alt='hero'>
+  </div>
+  <p>Here at iHero we specialize in task management and allow for our users to really discover what is at the edge of their comfort zone. 
+  
+  <p>Not only that, our members inspire other members to experience more power in their lives as well!
 </p>
+<div class='hush'>
+  <img class='randomvoice' src='{% static "media/47762.jpg" %}' alt='hero'>
+</div>
 <p>Login or create account to get in touch with others </p>
 </div>
 <div class='welcomeImage'>
@@ -14,8 +23,38 @@
 </div>
 </div>
 
-
-{%  endblock  %}
-
+</div> -->
 
 
+
+<section class="container-fluid h-100 row align-items-center justify-content-center">
+  <div class="col-12 col-md-6 col-lg-8">
+    <img class='img-fluid rounded' src='{% static "media/3356606.jpg" %}' alt='I do!'>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4 px-1">
+    <h3>Who would like to experience more power in their day to day life…?</h3>
+  </div>
+  <div class="col-12 col-md-6 col-lg-8 py-5">
+    <img class='img-fluid' src='{% static "media/hero.jpg" %}' alt='hero'>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4 px-1">
+    <h3>Here at iHero we specialize in task management and allow for our users to really discover what is at the edge of
+      their comfort zone.</h3>
+  </div>
+  <div class="col-12 col-md-6 col-lg-8">
+    <img class='img-fluid rounded' src='{% static "media/47762.jpg" %}' alt='moutain'>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <h3>Not only that, our members inspire other members to experience more power in their lives as well!</h3>
+  </div>
+  <div class="text-center p-5">
+    <h3>Login or create account to get in touch with others </h3>
+    <a href="#top" class="btn btn-lg btn-outline-primary">Go back to top</a>
+  </div>
+</section>
+<!-- </div>
+
+</div>
+  </div> -->
+
+{% endblock %}
