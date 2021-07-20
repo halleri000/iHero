@@ -24,7 +24,10 @@
       {% for coach in coaches %}
       <div class="card my-3">
         <div class="card-body">
-          <p>Hello my name is {{ coach.first_name }} {{ coach.last_name }} and I am {{ coach.age }} years of age.</p>
+
+          <p>Hello my name is <a href="/coach/{{  coach.id  }}/">
+            {{ coach.first_name }} {{ coach.last_name }} 
+          </a> and I am {{ coach.age }} years of age.</p>
     
           You can view my work <a href="/coach/{{  coach.website  }}/"> Here</a> <br>
           or connect with me <a href="/coach/{{  coach.email  }}/">Here</a>
@@ -40,7 +43,8 @@
       {% for learner in learners %}
       <div class="card my-3">
         <div class="card-body">
-          <p>Hello my name is {{ learner.first_name }} {{ learner.last_name }} and I am {{ learner.age }} years of age.</p>
+          <p>Hello my name is <a href="/learner/{{  learner.id  }}/">{{ learner.first_name }} {{ learner.last_name }} 
+          </a> and I am {{ learner.age }} years of age.</p>
     
           You can view my work <a href="/learner/{{  learner.website  }}/"> Here</a> <br>
           or connect with me <a href="/learner/{{  learner.email  }}/">Here</a>
