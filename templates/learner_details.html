@@ -8,7 +8,7 @@
   <div class="card profilecard my-3 ">
     <div class="card-body">
       <p>{{learner.bio}}</p>
-      You can view my work at {{learner.website }} or connect with me{{learner.email}}
+      You can view my work at {{learner.website }} or connect with me at {{learner.email}}
       <p>Age: {{ learner.age }}</p>
       <p> I am interested in {{ learner.interests }}</p>
     </div>
@@ -40,13 +40,21 @@
   <br>
   {% for task in assigned_tasks %}
   <p class='text-left tasks'>
-
+    {% if request.user.id == learner.id%}
     {%if task.completed %}
     <span>&#10003; &ensp;</span><a href="/task/{{  task.id  }}/">{{ task }}</a>
     <a class='taskbtns' href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
     {% else %}
     <a href="/task/{{  task.id  }}/">{{ task }}</a>
     <a class='taskbtns' href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
+    {%endif%}
+    {%else%}
+    {%if task.completed %}
+    <span>&#10003; &ensp;</span><a href="/task/{{  task.id  }}/">{{ task }}</a>
+    {% else %}
+    <a href="/task/{{  task.id  }}/">{{ task }}</a>
+    {%endif%}
+
     {%endif%}
   </p>
     {% endfor %}
