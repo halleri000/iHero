@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% load crispy_forms_tags%}
+ 
 <br>
 <div class="container ">
-  <div class="row ">
-    <div class=' my-3 text-center h1'>Messages</div>
-    <div><button class="my-3 text-center  h5"><a href="/add_message/">Post</a> </button></div>
-
+  <div class=' my-3 text-center h1'>Messages</div>
+  <div class=message'>
+    <form class='message' method="post" novalidate>
+      {% csrf_token %}
+      <div class='sendmessage col-8'>
+        {{ form|crispy}}
+      </div>
+      <button class=' msgbtn mx-2 btn btn-success' type="submit">Post</button>
   </div>
+  </form>
   {% for message in messages %}
-  <!--<div class="col-lg-4 col-12 col-md-6 my-3">-->
-  <div class=" card my-2">
+  <div class=" card my-3">
     <div class="card-body">
       <p>Posted By: <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong></p>
       <p>{{ message.text }}</p>
@@ -18,8 +23,8 @@
         Posted: {{ message.time_date }}</p>
     </div>
   </div>
-
-
+ 
+ 
   {% endfor %}
 </div>
 {% endblock %}

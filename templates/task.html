@@ -1,17 +1,19 @@
 {%  extends 'base.html'  %}
-
-
+ 
+ 
 {%  block content  %}
-
+ 
 <br>
-  <p>Task: {{  task  }}</p>
-  <p>Assigned To: {{  task.assigned_to|title  }}</p>
-  <p>Completed Status: {{  task.completed  }}</p>
-  <p>Date Submitted: {{  task.submitted_on  }}</p>
-  <a href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
-  <a href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
-
-
-
-
+<div class="container profile mt-5">
+  <div class="card profilecard my-3">
+    <div class='card-body'>
+    <p>Task: {{  task  }}</p>
+    <p>Assigned To: {{  task.assigned_to|title  }}</p>
+    <p>Completed Status: {{  task.completed  }}</p>
+    <p>Date Submitted: {{  task.submitted_on  }}</p>
+    <a href="/markcomplete/{{  task.id  }}/"><button>Mark Complete</button></a>
+    <a href="/markincomplete/{{  task.id  }}/"><button>Mark Incomplete</button></a>
+  </div>
+  </div>
+</div>
 {%  endblock  %}
