@@ -1,7 +1,8 @@
 from django import forms
-
-
+ 
+ 
 class AddMessageForm(forms.Form):
-    text = forms.CharField(
-        widget=forms.Textarea
+    text = forms.CharField(label='',
+    
+        widget=forms.Textarea(attrs={'placeholder':'Send A message to the world','rows': 1})
     )
