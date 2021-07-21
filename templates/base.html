@@ -47,11 +47,10 @@
           <li class="nav-item mx-2"><a class="nav-link" href='/learners/'>Learners</a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/messages/'> Messages </a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/notifications/'> Mentions </a></li>
-          {% if request.user.is_staff %}
-          <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User-Tasks </a></li>
-          {%endif%}
-          
-          {% if request.user.is_coach %}
+
+            
+            {% if request.user.is_coach %}
+            <li class="nav-item mx-2"><a class="nav-link" href='/addtotasks/'> User-Tasks </a></li>
           <li class="nav-item mx-2"><a class="nav-link" href='/coach/{{request.user.id}}/'> Profile </a></li>
           {%else%}
           <li class="nav-item mx-2"><a class="nav-link" href='/learner/{{request.user.id}}/'>Profile</a></li>
