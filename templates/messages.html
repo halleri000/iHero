@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load crispy_forms_tags%}
- 
+
 <br>
 <div class="container ">
   <div class=' my-3 text-center h1'>Messages</div>
-  <div class=message'>
+  <div class='message'>
     <form class='message' method="post" novalidate>
       {% csrf_token %}
       <div class='sendmessage col-8'>
@@ -17,14 +17,22 @@
   {% for message in messages %}
   <div class=" card my-3">
     <div class="card-body">
-      <p>Posted By: <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong></p>
+      <p>Posted By: 
+        {%  if message.assigned_message.is_coach  %}
+          <a href="/coach/{{ message.assigned_message.id }}/">
+            <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong>
+          </a>
+        {%  else  %}
+          <a href="/learner/{{ message.assigned_message.id }}/">
+            <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong>
+          </a>
+        {%  endif  %}
+      </p>
       <p>{{ message.text }}</p>
       <p>
         Posted: {{ message.time_date }}</p>
     </div>
   </div>
- 
- 
   {% endfor %}
 </div>
 {% endblock %}
