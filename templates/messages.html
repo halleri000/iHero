@@ -20,11 +20,11 @@
       <p>Posted By: 
         {%  if message.assigned_message.is_coach  %}
           <a href="/coach/{{ message.assigned_message.id }}/">
-            <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong>
+            <strong class='text-gray-dark '>{{ message.assigned_message }}</strong>
           </a>
         {%  else  %}
           <a href="/learner/{{ message.assigned_message.id }}/">
-            <strong class='text-gray-dark '>{{ message.assigned_message|title }}</strong>
+            <strong class='text-gray-dark '>{{ message.assigned_message }}</strong>
           </a>
         {%  endif  %}
       </p>
